@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     DEV: bool = os.environ.get('DEV', False)
 
     SUPERUSER: str = 'admin'
-    SUPERUSER_PASSWORD: str = 'admin'
+    SUPERUSER_PASSWORD: str = 'admin123'
     API_V1_STR: str = '/api/v1'
     TZ: str = 'Asia/Shanghai'
 

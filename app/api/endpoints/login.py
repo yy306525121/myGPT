@@ -27,7 +27,7 @@ async def login(db: Session = Depends(get_db), form_data: OAuth2PasswordRequestF
     if user.roles:
         roles = json.loads(user.roles)
 
-    return schemas.Token(
+    data = schemas.Token(
         token=token,
         expire=expire,
         token_type='bearer',
