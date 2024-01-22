@@ -1,4 +1,5 @@
 import os
+import secrets
 from pathlib import Path
 
 from pydantic.v1 import BaseSettings
@@ -12,11 +13,13 @@ class Settings(BaseSettings):
     DEV: bool = os.environ.get('DEV', False)
 
     SUPERUSER: str = 'admin'
-    SUPERUSER_PASSWORD: str = 'admin123'
+    SUPERUSER_PASSWORD: str = 'admin'
     API_V1_STR: str = '/api/v1'
     TZ: str = 'Asia/Shanghai'
 
-    authjwt_secret_key: str = 'secret'
+    TABLE_PREFIX = 't_'
+    # 密钥
+    SECRET_KEY: str = secrets.token_urlsafe(32)
 
     # token默认过期时间：7天
     ACCESS_TOKEN_EXPIRE_MINUTES = 7 * 24 * 60
@@ -32,6 +35,26 @@ class Settings(BaseSettings):
     @property
     def TEMP_PATH(self):
         return self.CONFIG_PATH / 'temp'
+
+    @property
+    def MYSQL_USERNAME(self):
+        return os.environ.get('MYSQL_USERNAME', 'root')
+
+    @property
+    def MYSQL_PASSWORD(self):
+        return os.environ.get('MYSQL_PASSWORD', 'root')
+
+    @property
+    def MYSQL_HOST(self):
+        return os.environ.get('MYSQL_HOST', '127.0.0.1')
+
+    @property
+    def MYSQL_PORT(self):
+        return os.environ.get('MYSQL_PORT', '3306')
+
+    @property
+    def MYSQL_DATABASE(self):
+        return os.environ.get('MYSQL_DATABASE', 'my_gpt')
 
 
 settings = Settings()
