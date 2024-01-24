@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     # token默认过期时间：7天
     ACCESS_TOKEN_EXPIRE_MINUTES = 7 * 24 * 60
 
+    INITIAL_SYSTEM_PROMPT: str = 'You are a helpful assistant.'
+
     @property
     def ROOT_PATH(self):
         return Path(__file__).parents[2]

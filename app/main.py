@@ -2,7 +2,6 @@ import multiprocessing
 from contextlib import asynccontextmanager
 
 import uvicorn
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi_events.handlers.local import local_handler
 from fastapi_events.middleware import EventHandlerASGIMiddleware
@@ -36,11 +35,19 @@ def init_routers():
 
 
 def startup():
+    init_gradio()
     init_routers()
 
 
 def shutdown():
     pass
+
+
+def init_gradio():
+    global App
+    from app.webui.front.index import ui
+    import gradio as gr
+    App = gr.mount_gradio_app(App, ui(), path='/qa')
 
 
 if __name__ == '__main__':

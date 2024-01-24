@@ -12,3 +12,6 @@ fastapi-events~=0.9.1
 python-dotenv~=1.0.0
 passlib~=1.7.4
 PyMySQL~=1.1.0
+sentence-transformers~=2.2.2
+transformers~=4.36.2
+matplotlib==3.5.0

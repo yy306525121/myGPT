@@ -1,4 +1,4 @@
-from typing import Any, Self
+from typing import Any, Self, List
 
 from sqlalchemy.orm import DeclarativeBase, declared_attr, Session
 
@@ -18,6 +18,11 @@ class Base(DeclarativeBase):
     @classmethod
     def get(cls, db: Session, id: int) -> Self:
         return db.query(cls).filter(cls.id == id).first()
+
+    @classmethod
+    def list(cls, db: Session) -> List[Self]:
+        result = db.query(cls).all()
+        return list(result)
 
     @declared_attr
     def __tablename__(self) -> str:
