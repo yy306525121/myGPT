@@ -38,25 +38,6 @@ class Settings(BaseSettings):
     def TEMP_PATH(self):
         return self.CONFIG_PATH / 'temp'
 
-    @property
-    def MYSQL_USERNAME(self):
-        return os.environ.get('MYSQL_USERNAME', 'root')
-
-    @property
-    def MYSQL_PASSWORD(self):
-        return os.environ.get('MYSQL_PASSWORD', 'root')
-
-    @property
-    def MYSQL_HOST(self):
-        return os.environ.get('MYSQL_HOST', '127.0.0.1')
-
-    @property
-    def MYSQL_PORT(self):
-        return os.environ.get('MYSQL_PORT', '3306')
-
-    @property
-    def MYSQL_DATABASE(self):
-        return os.environ.get('MYSQL_DATABASE', 'my_gpt')
 
 
 settings = Settings()
